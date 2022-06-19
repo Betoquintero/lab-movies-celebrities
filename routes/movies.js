@@ -65,11 +65,11 @@ router.get('/:movieid/edit', async (req, res, next) => {
     }
 })
 
-router.post(':/movieid/edit', async (req, res, next) => {
+router.post('/:movieid/edit', async (req, res, next) => {
     const {movieid} = req.params;
     const {title, genre, plot, cast} = req.body;
     try {
-        await Movie.findByIdAndUpdate(movieid, {genre, plot, cast}, {new:true})
+        await Movie.findByIdAndUpdate(movieid, {title, genre, plot, cast}, {new:true})
         res.redirect(`/movies/${movieid}`)
     } catch (error) {
         next(error)
